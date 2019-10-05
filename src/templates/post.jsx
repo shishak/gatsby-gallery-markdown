@@ -22,7 +22,7 @@ const PostSuggestion = styled.div`
 const Post = ({ data, pageContext }) => {
   const { next, prev } = pageContext;
   const {html, frontmatter, excerpt } = data.markdownRemark
-  const {date, title, tags, path, description} = frontmatter
+  const {date, title, tags, permalink, description} = frontmatter
   const image = frontmatter.cover.childImageSharp.fluid;
 
   return (
@@ -31,7 +31,7 @@ const Post = ({ data, pageContext }) => {
         title={title}
         description={description || excerpt || ' '}
         banner={image}
-        pathname={path}
+        pathname={permalink}
         article
       />
       <Header title={title} date={date} cover={image} />
@@ -50,7 +50,7 @@ const Post = ({ data, pageContext }) => {
         </PostSuggestion>
         <PostSuggestion>
           {next && (
-            <Link to={next.frontmatter.path}>
+            <Link to={next.frontmatter.permalink}>
               Next
               <h3>{next.frontmatter.title}</h3>
             </Link>
@@ -73,7 +73,7 @@ Post.propTypes = {
 
 export const query = graphql`
   query($pathSlug: String!) {
-    markdownRemark(frontmatter: { path: { eq: $pathSlug } }) {
+    markdownRemark(frontmatter: { permalink: { eq: $pathSlug } }) {
       html
       frontmatter {
         date
