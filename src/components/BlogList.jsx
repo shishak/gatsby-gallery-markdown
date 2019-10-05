@@ -1,4 +1,4 @@
-import React from 'react';
+iimport React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
@@ -86,17 +86,17 @@ const Title = styled.h1`
   margin: 0;
 `;
 
-const BlogList = ({ path, cover, title, date, excerpt, tags }) => (
+const BlogList = ({ permalink, cover, title, date, excerpt, tags }) => (
   <Container>
     <Wrapper>
       <Image>
-        <Link to={path} title={title}>
+        <Link to={permalink} title={title}>
           <Img fluid={cover} />
         </Link>
       </Image>
       <Information>
         <Date>{date}</Date>
-        <Link to={path}>
+        <Link to={permalink}>
           <Title>{title}</Title>
         </Link>
         <TagsBlock list={tags} />
@@ -110,7 +110,7 @@ export default BlogList;
 
 BlogList.propTypes = {
   cover: PropTypes.object.isRequired,
-  path: PropTypes.string.isRequired,
+  permalink: PropTypes.string.isRequired,
   excerpt: PropTypes.string,
   date: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
