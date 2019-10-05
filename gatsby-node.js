@@ -1,4 +1,4 @@
-const path = require('path');
+const permalink = require('permalink');
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -18,7 +18,7 @@ exports.createPages = ({ graphql, actions }) => {
               edges {
                 node {
                   frontmatter {
-                    path
+                    permalink
                     title
                     tags
                   }
@@ -51,7 +51,7 @@ exports.createPages = ({ graphql, actions }) => {
         const tags = Object.keys(postsByTag);
 
         createPage({
-          path: '/tags',
+          permalink: '/tags',
           component: tagPage,
           context: {
             tags: tags.sort(),
@@ -63,7 +63,7 @@ exports.createPages = ({ graphql, actions }) => {
           const posts = postsByTag[tagName];
 
           createPage({
-            path: `/tags/${tagName}`,
+            permalink: `/tags/${tagName}`,
             component: tagPosts,
             context: {
               posts,
@@ -74,15 +74,15 @@ exports.createPages = ({ graphql, actions }) => {
 
         //create posts
         posts.forEach(({ node }, index) => {
-          const path = node.frontmatter.path;
+          const permalink = node.frontmatter.permalink;
           const prev = index === 0 ? null : posts[index - 1].node;
           const next =
             index === posts.length - 1 ? null : posts[index + 1].node;
           createPage({
-            path,
+            permalink,
             component: postTemplate,
             context: {
-              pathSlug: path,
+              pathSlug: permalink,
               prev,
               next,
             },
