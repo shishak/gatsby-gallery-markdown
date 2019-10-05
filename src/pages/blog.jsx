@@ -15,7 +15,7 @@ const Blog = ({ data }) => {
         <BlogList
           key={node.id}
           cover={node.frontmatter.cover.childImageSharp.fluid}
-          path={node.frontmatter.path}
+          permalink={node.frontmatter.permalink}
           title={node.frontmatter.title}
           date={node.frontmatter.date}
           tags={node.frontmatter.tags}
@@ -37,7 +37,7 @@ Blog.propTypes = {
             excerpt: PropTypes.string,
             frontmatter: PropTypes.shape({
               cover: PropTypes.object.isRequired,
-              path: PropTypes.string.isRequired,
+              permalink: PropTypes.string.isRequired,
               title: PropTypes.string.isRequired,
               date: PropTypes.string.isRequired,
               tags: PropTypes.array,
@@ -58,7 +58,7 @@ export const query = graphql`
           excerpt(pruneLength: 200)
           frontmatter {
             title
-            path
+            permalink
             tags
             date(formatString: "MM.DD.YYYY")
             cover {
