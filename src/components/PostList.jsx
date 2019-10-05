@@ -110,7 +110,7 @@ const PostList = ({ cover, path, date, title, excerpt }) => (
     <Image>
       <Img fluid={cover} />
     </Image>
-    <StyledLink to={path}>
+    <StyledLink to={permalink}>
       <Info>
         <span>{date}</span>
         <Title>{title}</Title>
@@ -124,7 +124,7 @@ export default PostList;
 
 PostList.propTypes = {
   cover: PropTypes.object.isRequired,
-  path: PropTypes.string.isRequired,
+  permalink: PropTypes.string.isRequired,
   excerpt: PropTypes.string,
   date: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
